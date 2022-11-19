@@ -1,12 +1,7 @@
 <template>
-  <div class="page-footer">
-    <div class="page-footer-link">
-      <a href="https://github.com/jekip/naive-ui-admin" target="_blank"> 官网 </a>
-      <a href="https://github.com/jekip/naive-ui-admin" target="_blank"> 社区 </a>
-      <a href="https://github.com/jekip/naive-ui-admin/issues" target="_blank"> 交流 </a>
-    </div>
-    <div class="copyright"> naive-ui-admin 1.4 · Made by Ah jung </div>
-  </div>
+  <n-card class="page-footer"> 
+    <div class="copyright">Copyright © naive-ui-admin</div>
+  </n-card>
 </template>
 
 <script>
@@ -24,8 +19,10 @@
 <style lang="less" scoped>
   .page-footer {
     //margin: 28px 0 24px 0;
-    padding: 0 16px;
+    margin: 0 10px 10px 10px;
     text-align: center;
+    height: 45px;
+    justify-content: center;
 
     a {
       font-size: 14px;

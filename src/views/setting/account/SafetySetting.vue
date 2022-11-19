@@ -7,6 +7,13 @@
             <n-button type="primary" text>修改</n-button>
           </template>
           <n-thing title="账户密码">
+            <template #avatar>
+              <n-avatar>
+                <n-icon>
+                  <PersonCircle />
+                </n-icon>
+              </n-avatar>
+            </template>
             <template #description
               ><span class="text-gray-400">绑定手机和邮箱，并设置密码，帐号更安全</span></template
             >
@@ -17,6 +24,13 @@
             <n-button type="primary" text>修改</n-button>
           </template>
           <n-thing title="绑定手机">
+            <template #avatar>
+              <n-avatar>
+                <n-icon>
+                  <PhonePortrait />
+                </n-icon>
+              </n-avatar>
+            </template>
             <template #description
               ><span class="text-gray-400">已绑定手机号：+86189****4877</span></template
             >
@@ -27,6 +41,13 @@
             <n-button type="primary" text>设置</n-button>
           </template>
           <n-thing title="密保问题">
+            <template #avatar>
+              <n-avatar>
+                <n-icon>
+                  <LockClosed />
+                </n-icon>
+              </n-avatar>
+            </template>
             <template #description
               ><span class="text-gray-400"
                 >未设置密保问题，密保问题可有效保护账户安全</span
@@ -39,6 +60,13 @@
             <n-button type="primary" text>修改</n-button>
           </template>
           <n-thing title="个性域名">
+            <template #avatar>
+              <n-avatar>
+                <n-icon>
+                  <Earth />
+                </n-icon>
+              </n-avatar>
+            </template>
             <template #description
               ><span class="text-gray-400">已绑定域名：https://www.naiveui.com</span></template
             >
@@ -49,4 +77,7 @@
   </n-grid>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { PersonCircle, LockClosed, PhonePortrait, Earth } from '@vicons/ionicons5'
+
+</script>

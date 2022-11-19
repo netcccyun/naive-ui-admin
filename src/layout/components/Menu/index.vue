@@ -77,7 +77,7 @@
       });
 
       // 监听分割菜单
-      watch(
+      /*watch(
         () => settingStore.menuSetting.mixMenu,
         () => {
           updateMenu();
@@ -85,7 +85,7 @@
             emit('update:collapsed', !props.collapsed);
           }
         }
-      );
+      );*/
 
       // 监听菜单收缩状态
       // watch(

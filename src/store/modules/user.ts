@@ -3,7 +3,7 @@ import { store } from '@/store';
 import { ACCESS_TOKEN, CURRENT_USER, IS_LOCKSCREEN } from '@/store/mutation-types';
 import { ResultEnum } from '@/enums/httpEnum';
 
-import { getUserInfo, login } from '@/api/system/user';
+import { getUserInfo, login, logout } from '@/api/system/user';
 import { storage } from '@/utils/Storage';
 
 export interface IUserState {
@@ -75,12 +75,11 @@ export const useUserStore = defineStore({
     },
 
     // 获取用户信息
-    GetInfo() {
+    async GetInfo() {
       const that = this;
       return new Promise((resolve, reject) => {
         getUserInfo()
-          .then((res) => {
-            const result = res;
+          .then((result) => {
             if (result.permissions && result.permissions.length) {
               const permissionsList = result.permissions;
               that.setPermissions(permissionsList);
@@ -89,7 +88,7 @@ export const useUserStore = defineStore({
               reject(new Error('getInfo: permissionsList must be a non-null array !'));
             }
             that.setAvatar(result.avatar);
-            resolve(res);
+            resolve(result.permissions);
           })
           .catch((error) => {
             reject(error);
@@ -99,11 +98,16 @@ export const useUserStore = defineStore({
 
     // 登出
     async logout() {
-      this.setPermissions([]);
-      this.setUserInfo('');
-      storage.remove(ACCESS_TOKEN);
-      storage.remove(CURRENT_USER);
-      return Promise.resolve('');
+      try {
+        await logout([]);
+        this.setPermissions([]);
+        this.setUserInfo('');
+        storage.remove(ACCESS_TOKEN);
+        storage.remove(CURRENT_USER);
+        return Promise.resolve('');
+      } catch (e) {
+        return Promise.reject(e);
+      }
     },
   },
 });

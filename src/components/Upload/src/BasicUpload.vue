@@ -222,6 +222,11 @@
         flex-direction: column;
         align-items: center;
 
+        .n-upload-trigger{
+          display: block;
+          text-align: center;
+        }
+
         &:hover {
           background: 0 0;
 

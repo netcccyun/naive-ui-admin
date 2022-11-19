@@ -1,7 +1,7 @@
 <template>
   <div class="console">
     <!--数据卡片-->
-    <n-grid cols="1 s:2 m:3 l:4 xl:4 2xl:4" responsive="screen" :x-gap="12" :y-gap="8">
+    <n-grid cols="1 s:2 m:3 l:4" responsive="screen" :x-gap="12" :y-gap="8">
       <n-grid-item>
         <NCard
           title="访问量"
@@ -196,7 +196,7 @@
 
     <!--导航卡片-->
     <div class="mt-4">
-      <n-grid cols="1 s:2 m:3 l:8 xl:8 2xl:8" responsive="screen" :x-gap="16" :y-gap="8">
+      <n-grid cols="2 s:3 m:4 l:8" responsive="screen" :x-gap="16" :y-gap="8">
         <n-grid-item v-for="(item, index) in iconList" :key="index">
           <NCard content-style="padding-top: 0;" size="small" :bordered="false">
             <template #footer>

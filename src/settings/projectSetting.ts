@@ -15,13 +15,15 @@ const setting = {
     isReload: true,
   },
   //页脚
-  showFooter: true,
+  showFooter: false,
+  //回到顶部
+  showBackTop: false,
   //多标签
   multiTabsSetting: {
     //背景色
     bgColor: '#fff',
     //是否显示
-    show: true,
+    show: false,
     //固定多标签
     fixed: true,
   },
@@ -52,6 +54,6 @@ const setting = {
   //是否开启路由动画
   isPageAnimate: true,
   //路由动画类型
-  pageAnimateType: 'zoom-fade',
+  pageAnimateType: 'fade',
 };
 export default setting;

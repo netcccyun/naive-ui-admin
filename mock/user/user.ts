@@ -1,11 +1,12 @@
 import Mock from 'mockjs';
-import { resultSuccess } from '../_util';
+import { resultSuccess, resultError } from '../_util';
 
 const Random = Mock.Random;
 
 const token = Random.string('upper', 32, 32);
 
 const adminInfo = {
+  islogin: true,
   userId: '1',
   username: 'admin',
   realName: 'Admin',
@@ -44,6 +45,14 @@ export default [
     method: 'post',
     response: () => {
       return resultSuccess({ token });
+    },
+  },
+  {
+    url: '/api/logout',
+    timeout: 1000,
+    method: 'post',
+    response: () => {
+      return resultSuccess({ });
     },
   },
   {

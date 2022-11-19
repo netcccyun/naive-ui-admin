@@ -37,6 +37,7 @@
     "date-fns": "^2.29.3",
     "echarts": "^5.4.0",
     "element-resize-detector": "^1.2.4",
+    "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.0",

@@ -14,6 +14,11 @@ import {
   CheckOutlined,
 } from '@vicons/antd';
 
+import {
+  SunnyOutline,
+  MoonOutline,
+} from '@vicons/ionicons5';
+
 export default {
   SettingOutlined,
   LockOutlined,
@@ -28,4 +33,6 @@ export default {
   LogoutOutlined,
   UserOutlined,
   CheckOutlined,
+  SunnyOutline,
+  MoonOutline,
 };

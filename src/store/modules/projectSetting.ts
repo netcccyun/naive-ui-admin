@@ -15,6 +15,7 @@ const {
   permissionMode,
   isPageAnimate,
   pageAnimateType,
+  showBackTop,
 } = projectSetting;
 
 interface ProjectSettingState {
@@ -29,6 +30,7 @@ interface ProjectSettingState {
   isPageAnimate: boolean; //是否开启路由动画
   pageAnimateType: string; //路由动画类型
   isMobile: boolean; // 是否处于移动端模式
+  showBackTop: boolean; // 是否显示回到顶部
 }
 
 export const useProjectSettingStore = defineStore({
@@ -45,6 +47,7 @@ export const useProjectSettingStore = defineStore({
     permissionMode,
     isPageAnimate,
     pageAnimateType,
+    showBackTop,
   }),
   getters: {
     getNavMode(): string {
@@ -79,6 +82,9 @@ export const useProjectSettingStore = defineStore({
     },
     getPageAnimateType(): string {
       return this.pageAnimateType;
+    },
+    getShowBackTop(): boolean {
+      return this.showBackTop;
     },
   },
   actions: {

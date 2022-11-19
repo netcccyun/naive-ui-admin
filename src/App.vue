@@ -53,7 +53,7 @@
 
   const getDarkTheme = computed(() => (designStore.darkTheme ? darkTheme : undefined));
 
-  let timer;
+  /*let timer;
 
   const timekeeping = () => {
     clearInterval(timer);
@@ -79,7 +79,7 @@
 
   onUnmounted(() => {
     document.removeEventListener('mousedown', timekeeping);
-  });
+  });*/
 </script>
 
 <style lang="less">

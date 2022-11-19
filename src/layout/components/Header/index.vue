@@ -69,22 +69,28 @@
       </n-breadcrumb>
     </div>
     <div class="layout-header-right">
-      <div
-        class="layout-header-trigger layout-header-trigger-min"
-        v-for="item in iconList"
-        :key="item.icon.name"
-      >
+      <div class="layout-header-trigger layout-header-trigger-min">
         <n-tooltip placement="bottom">
           <template #trigger>
             <n-icon size="18">
-              <component :is="item.icon" v-on="item.eventObject || {}" />
+              <component :is="designStore.darkTheme ? 'SunnyOutline' : 'MoonOutline'" @click="setDarkTheme"/>
             </n-icon>
           </template>
-          <span>{{ item.tips }}</span>
+          <span>{{ designStore.darkTheme ? '浅' : '深' }}色主题</span>
+        </n-tooltip>
+      </div>
+      <div class="layout-header-trigger layout-header-trigger-min" v-if="!isMobile">
+        <n-tooltip placement="bottom">
+          <template #trigger>
+            <n-icon size="18">
+              <component is="LockOutlined" @click="useLockscreen.setLock(true)"/>
+            </n-icon>
+          </template>
+          <span>锁屏</span>
         </n-tooltip>
       </div>
       <!--切换全屏-->
-      <div class="layout-header-trigger layout-header-trigger-min">
+      <div class="layout-header-trigger layout-header-trigger-min" v-if="!isMobile">
         <n-tooltip placement="bottom">
           <template #trigger>
             <n-icon size="18">
@@ -108,7 +114,7 @@
         </n-dropdown>
       </div>
       <!--设置-->
-      <div class="layout-header-trigger layout-header-trigger-min" @click="openSetting">
+      <div class="layout-header-trigger layout-header-trigger-min" @click="openSetting" v-if="false">
         <n-tooltip placement="bottom-end">
           <template #trigger>
             <n-icon size="18" style="font-weight: bold">
@@ -125,7 +131,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, ref, computed, unref } from 'vue';
+  import { defineComponent, reactive, toRefs, ref, computed, unref, watch } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
   import components from './components';
   import { NDialogProvider, useDialog, useMessage } from 'naive-ui';
@@ -135,6 +141,8 @@
   import ProjectSetting from './ProjectSetting.vue';
   import { AsideMenu } from '@/layout/components/Menu';
   import { useProjectSetting } from '@/hooks/setting/useProjectSetting';
+  import { useProjectSettingStore } from '@/store/modules/projectSetting';
+  import { useDesignSettingStore } from '@/store/modules/designSetting';
   import { websiteConfig } from '@/config/website.config';
 
   export default defineComponent({
@@ -153,8 +161,10 @@
       const useLockscreen = useLockscreenStore();
       const message = useMessage();
       const dialog = useDialog();
-      const { getNavMode, getNavTheme, getHeaderSetting, getMenuSetting, getCrumbsSetting } =
+      const { getNavMode, getNavTheme, getHeaderSetting, getMenuSetting, getCrumbsSetting, getIsMobile } =
         useProjectSetting();
+      const settingStore = useProjectSettingStore();
+      const designStore = useDesignSettingStore();
 
       const { username } = userStore?.info || {};
 
@@ -167,7 +177,16 @@
         navTheme: getNavTheme,
         headerSetting: getHeaderSetting,
         crumbsSetting: getCrumbsSetting,
+        useLockscreen: useLockscreen,
+        isMobile: getIsMobile,
       });
+
+      watch(
+        () => designStore.darkTheme,
+        (to) => {
+          settingStore.navTheme = to ? 'header-dark' : 'dark';
+        }
+      );
 
       const getInverted = computed(() => {
         const navTheme = unref(getNavTheme);
@@ -234,7 +253,9 @@
           positiveText: '确定',
           negativeText: '取消',
           onPositiveClick: () => {
+            message.loading('退出登录中...');
             userStore.logout().then(() => {
+              message.destroyAll();
               message.success('成功退出登录');
               // 移除标签页
               localStorage.removeItem(TABS_ROUTES);
@@ -271,27 +292,6 @@
         }
       };
 
-      // 图标列表
-      const iconList = [
-        {
-          icon: 'SearchOutlined',
-          tips: '搜索',
-        },
-        {
-          icon: 'GithubOutlined',
-          tips: 'github',
-          eventObject: {
-            click: () => window.open('https://github.com/jekip/naive-ui-admin'),
-          },
-        },
-        {
-          icon: 'LockOutlined',
-          tips: '锁屏',
-          eventObject: {
-            click: () => useLockscreen.setLock(true),
-          },
-        },
-      ];
       const avatarOptions = [
         {
           label: '个人设置',
@@ -320,9 +320,12 @@
         openDrawer();
       }
 
+      function setDarkTheme(){
+        designStore.setDarkTheme(!designStore.darkTheme);
+      }
+
       return {
         ...toRefs(state),
-        iconList,
         toggleFullScreen,
         doLogout,
         route,
@@ -338,6 +341,8 @@
         getMenuLocation,
         mixMenu,
         websiteConfig,
+        designStore,
+        setDarkTheme,
       };
     },
   });
@@ -436,7 +441,7 @@
 
     &-trigger-min {
       width: auto;
-      padding: 0 12px;
+      padding: 0 16px;
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <n-grid cols="2 s:2 m:2 l:3 xl:3 2xl:3" responsive="screen">
+  <n-grid cols="1 m:2 l:3" responsive="screen">
     <n-grid-item>
       <n-form :label-width="80" :model="formValue" :rules="rules" ref="formRef">
         <n-form-item label="昵称" path="name">
@@ -62,6 +62,7 @@
   function formSubmit() {
     formRef.value.validate((errors) => {
       if (!errors) {
+        console.log(formValue)
         message.success('验证成功');
       } else {
         message.error('验证失败，请填写完整信息');

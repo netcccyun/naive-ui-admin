@@ -215,7 +215,8 @@
       //组装表格信息
       const getBindValues = computed(() => {
         const tableData = unref(getDataSourceRef);
-        const maxHeight = tableData.length ? `${unref(deviceHeight)}px` : 'auto';
+        let maxHeight = tableData.length ? `${unref(deviceHeight)}px` : 'auto';
+        if (!unref(getCanResize)) maxHeight = 'auto';
         return {
           ...unref(getProps),
           loading: unref(getLoading),
@@ -349,5 +350,27 @@
 
   .table-toolbar-inner-popover-title {
     padding: 2px 0;
+  }
+  .s-table{
+    /deep/.n-data-table .n-pagination{
+      flex-wrap: wrap;
+      &-item{
+        margin-bottom: 8px;
+      }
+      &-prefix{
+        flex-basis: 100%;
+        padding-bottom: 8px;
+      }
+      @media screen and (min-width:920px) {
+        &-item{
+          margin-bottom: 0;
+        }
+        &-prefix{
+          position: absolute;
+          left: 5px;
+          padding: 8px 0;
+        }
+      }
+    }
   }
 </style>

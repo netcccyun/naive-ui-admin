@@ -30,10 +30,8 @@ export default [
       const { page = 1, pageSize = 10 } = query;
       const list = tableList(Number(pageSize));
       return resultSuccess({
-        page: Number(page),
-        pageSize: Number(pageSize),
-        pageCount: 60,
-        list,
+        rows: list,
+        total: 582
       });
     },
   },

@@ -2,7 +2,7 @@
   <div>
     <div class="n-layout-page-header">
       <n-card :bordered="false" title="工作台">
-        <n-grid cols="2 s:1 m:1 l:2 xl:2 2xl:2" responsive="screen">
+        <n-grid cols="1 m:2" responsive="screen">
           <n-gi>
             <div class="flex items-center">
               <div>
@@ -33,7 +33,7 @@
         </n-grid>
       </n-card>
     </div>
-    <n-grid class="mt-4" cols="2 s:1 m:1 l:2 xl:2 2xl:2" responsive="screen" :x-gap="12" :y-gap="9">
+    <n-grid class="mt-4" cols="1 l:2" responsive="screen" :x-gap="12" :y-gap="9">
       <n-gi>
         <n-card
           :segmented="{ content: true }"

@@ -85,7 +85,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue';
+  import { reactive, ref, onMounted } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import { useUserStore } from '@/store/modules/user';
   import { useMessage } from 'naive-ui';
@@ -93,6 +93,8 @@
   import { PersonOutline, LockClosedOutline, LogoGithub, LogoFacebook } from '@vicons/ionicons5';
   import { PageEnum } from '@/enums/pageEnum';
   import { websiteConfig } from '@/config/website.config';
+  import { ACCESS_TOKEN } from '@/store/mutation-types';
+  import { storage } from '@/utils/Storage';
   interface FormState {
     username: string;
     password: string;
@@ -153,6 +155,22 @@
       }
     });
   };
+
+  onMounted(async () => {
+    const token = storage.get(ACCESS_TOKEN);
+    if(token){
+      try{
+        await userStore.GetInfo()
+        message.info('你已登录');
+        const toPath = decodeURIComponent((route.query?.redirect || '/') as string);
+        if (route.name === LOGIN_NAME) {
+          router.replace('/');
+        } else router.replace(toPath);
+      }catch{
+        storage.remove(ACCESS_TOKEN)
+      }
+    }
+  })
 </script>
 
 <style lang="less" scoped>
@@ -177,6 +195,10 @@
       &-desc {
         font-size: 14px;
         color: #808695;
+      }
+
+      &-logo img{
+        max-height: 80px;
       }
     }
 

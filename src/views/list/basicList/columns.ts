@@ -3,6 +3,9 @@ import { NAvatar } from 'naive-ui';
 
 export const columns = [
   {
+    type: 'selection'
+  },
+  {
     title: 'id',
     key: 'id',
     width: 100,

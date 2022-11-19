@@ -54,6 +54,6 @@ export const basicProps = {
     type: Object as PropType<BasicColumn>,
     default: null,
   },
-  canResize: propTypes.bool.def(true),
+  canResize: propTypes.bool.def(false),
   resizeHeightOffset: propTypes.number.def(0),
 };

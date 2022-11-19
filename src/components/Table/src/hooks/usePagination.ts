@@ -1,9 +1,10 @@
 import type { PaginationProps } from '../types/pagination';
 import type { BasicTableProps } from '../types/table';
-import { computed, unref, ref, ComputedRef } from 'vue';
+import { computed, unref, ref, ComputedRef, h } from 'vue';
+import { screenEnum } from '@/enums/breakpointEnum';
 
 import { isBoolean } from '@/utils/is';
-import { APISETTING, DEFAULTPAGESIZE, PAGESIZES } from '../const';
+import { APISETTING, DEFAULTPAGESIZE, PAGESIZES, PAGESLOT, DISPLAYORDER } from '../const';
 
 export function usePagination(refProps: ComputedRef<BasicTableProps>) {
   const configRef = ref<PaginationProps>({});
@@ -15,14 +16,29 @@ export function usePagination(refProps: ComputedRef<BasicTableProps>) {
       return false;
     }
     const { totalField } = APISETTING;
+    const total = unref(configRef)[totalField] ?? 0;
+    const pageSize = unref(configRef).pageSize ?? DEFAULTPAGESIZE;
+    let pageCount = parseInt(total / pageSize);
+    if(total % pageSize > 0){
+      pageCount ++;
+    }
+    let pageSlot = PAGESLOT;
+    if(document.body.clientWidth <= screenEnum.SM){
+      pageSlot = 5;
+    }
     return {
-      pageSize: DEFAULTPAGESIZE,
+      pageSize: pageSize,
       pageSizes: PAGESIZES,
+      pageSlot: pageSlot,
       showSizePicker: true,
       showQuickJumper: true,
+      size: 'large',
+      displayOrder: DISPLAYORDER,
+      prefix: ({itemCount, startIndex, endIndex})=>h('span', null, ['第 '+(startIndex+1)+'-'+(endIndex+1)+' 条, 共 ', h('b', null, itemCount), ' 条']),
       ...(isBoolean(pagination) ? {} : pagination),
       ...unref(configRef),
-      pageCount: unref(configRef)[totalField],
+      itemCount: total,
+      pageCount: pageCount,
     };
   });
 

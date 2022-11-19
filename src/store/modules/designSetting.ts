@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { store } from '@/store';
 import designSetting from '@/settings/designSetting';
+import Cookie from 'js-cookie'
 
 const { darkTheme, appTheme, appThemeList } = designSetting;
 
@@ -16,7 +17,7 @@ interface DesignSettingState {
 export const useDesignSettingStore = defineStore({
   id: 'app-design-setting',
   state: (): DesignSettingState => ({
-    darkTheme,
+    darkTheme: Cookie.get('darkTheme') === '1',
     appTheme,
     appThemeList,
   }),
@@ -31,7 +32,16 @@ export const useDesignSettingStore = defineStore({
       return this.appThemeList;
     },
   },
-  actions: {},
+  actions: {
+    setDarkTheme(value: boolean): void {
+      this.darkTheme = value;
+      if(value){
+        Cookie.set('darkTheme', '1')
+      }else{
+        Cookie.remove('darkTheme')
+      }
+    },
+  },
 });
 
 // Need to be used outside the setup

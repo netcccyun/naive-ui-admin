@@ -26,6 +26,8 @@ export function useProjectSetting() {
 
   const getPageAnimateType = computed(() => projectStore.pageAnimateType);
 
+  const getShowBackTop= computed(() => projectStore.showBackTop);
+
   return {
     getNavMode,
     getNavTheme,
@@ -38,5 +40,6 @@ export function useProjectSetting() {
     getShowFooter,
     getIsPageAnimate,
     getPageAnimateType,
+    getShowBackTop,
   };
 }

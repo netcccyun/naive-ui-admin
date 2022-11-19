@@ -1,7 +1,7 @@
 <template>
   <div>
-    <n-grid :x-gap="24">
-      <n-grid-item span="6">
+    <n-grid x-gap="12" item-responsive responsive="screen">
+      <n-grid-item span="24 m:6">
         <n-card :bordered="false" size="small" class="proCard">
           <n-thing
             class="thing-cell"
@@ -15,7 +15,7 @@
           </n-thing>
         </n-card>
       </n-grid-item>
-      <n-grid-item span="18">
+      <n-grid-item span="24 m:18">
         <n-card :bordered="false" size="small" :title="typeTitle" class="proCard">
           <BasicSetting v-if="type === 1" />
           <RevealSetting v-if="type === 2" />

@@ -86,9 +86,9 @@ export const useAsyncRouteStore = defineStore({
       // 设置需要缓存的组件
       this.keepAliveComponents = compNames;
     },
-    async generateRoutes(data) {
+    async generateRoutes(permissionsList) {
       let accessedRouters;
-      const permissionsList = data.permissions || [];
+      permissionsList = permissionsList || [];
       const routeFilter = (route) => {
         const { meta } = route;
         const { permissions } = meta || {};

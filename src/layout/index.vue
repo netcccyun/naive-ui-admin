@@ -58,12 +58,12 @@
             <MainView />
           </div>
         </div>
-        <!--1.15废弃，没啥用，占用操作空间-->
-        <!--        <NLayoutFooter v-if="getShowFooter">-->
-        <!--          <PageFooter />-->
-        <!--        </NLayoutFooter>-->
+        
+        <NLayoutFooter v-if="getShowFooter">
+          <PageFooter />
+        </NLayoutFooter>
       </n-layout-content>
-      <n-back-top :right="100" />
+      <n-back-top :right="100" v-if="!isMobile && getShowBackTop" />
     </n-layout>
   </n-layout>
 </template>
@@ -75,6 +75,7 @@
   import { MainView } from './components/Main';
   import { AsideMenu } from './components/Menu';
   import { PageHeader } from './components/Header';
+  import { PageFooter } from './components/Footer';
   import { useProjectSetting } from '@/hooks/setting/useProjectSetting';
   import { useDesignSetting } from '@/hooks/setting/useDesignSetting';
   import { useRoute } from 'vue-router';
@@ -82,12 +83,13 @@
 
   const { getDarkTheme } = useDesignSetting();
   const {
-    // getShowFooter,
+    getShowFooter,
     getNavMode,
     getNavTheme,
     getHeaderSetting,
     getMenuSetting,
     getMultiTabsSetting,
+    getShowBackTop,
   } = useProjectSetting();
 
   const settingStore = useProjectSettingStore();
