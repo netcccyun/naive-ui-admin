@@ -12,6 +12,166 @@
   <title><%= title %></title>
 </head>
 <body>
+<style>
+#browsers-page {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    background: #fff;
+    display: none;
+    overflow: scroll;
+    height: 100%;
+}
+
+#browsers-page #main-content {
+    max-width: 1068px;
+    width: 1068px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -178px 0 0 -534px;
+}
+
+#browsers-page #main-content.gt-four-browsers {
+    margin-top: -254px;
+}
+
+#browsers-page #art {
+    display: inline-block;
+    float: left;
+}
+
+#browsers-page #browsers {
+    display: inline-block;
+    margin-left: 48px;
+    max-width: 592px;
+    width: 592px;
+    float: left;
+    margin-bottom: 16px;
+}
+
+#browsers-page h1 {
+    font-family: PingFangSC-Regular, sans-serif, Microsoft YaHei, SimHei, Tahoma !important;
+    font-weight: 500;
+    margin-bottom: 16px;
+    font-size: 32px;
+    line-height: 48px;
+}
+
+#browsers-page #browsers p {
+    margin-bottom: 24px;
+    line-height: 21px;
+}
+
+#browsers-page .browser_not_supported-tip {
+    margin-top: 100px;
+    float: left;
+}
+
+#browsers-page .browsers-list {
+    height: 141px;
+    float: left;
+    margin-bottom: 16px;
+}
+
+#browsers-page .browser {
+    width: 136px;
+    margin: 0 16px 16px 0;
+    background: #f3f3f3;
+    border-radius: 4px;
+    float: left;
+}
+
+#browsers-page .browser a {
+    display: block;
+    width: 104px;
+    margin: 16px 16px;
+    color: #0d0d0d;
+    box-sizing: content-box;
+    text-align: center;
+    cursor: default;
+}
+
+#browsers-page .browser p {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+}
+
+#browsers-page .browser img {
+    width: 72px;
+}
+
+@media (max-width: 1127px) {
+    #browsers-page #main-content {
+        max-width: 1030px;
+    }
+
+    #browsers-page #art {
+        width: 390px;
+        height: 260px;
+    }
+}
+
+@media (max-width: 1069px) {
+    #browsers-page #main-content {
+        position: relative;
+        top: inherit;
+        left: inherit;
+        margin: 0 auto;
+        max-width: 640px;
+        text-align: center;
+    }
+
+    #browsers-page #main-content.gt-four-browsers {
+        margin-top: 0;
+    }
+
+    #browsers-page #browsers {
+        margin-bottom: 24px;
+        margin-left: 0;
+    }
+
+}
+
+@media (max-width: 647px) {
+    #browsers-page #main-content {
+        margin: 16px auto;
+        max-width: 440px;
+    }
+
+    #browsers-page #art {
+        width: 360px;
+        height: 240px;
+    }
+
+    #browsers-page .browsers-list {
+        margin-right: -16px;
+        text-align: left;
+    }
+}
+
+@media (max-width: 491px) {
+    #browsers-page #main-content {
+        max-width: 288px;
+    }
+
+    #browsers-page h1 {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    #browsers-page #art {
+        width: 300px;
+        height: 200px;
+    }
+}</style>
+<div id="browsers-page"><div id="main-content" class="gt-four-browsers"><img class="browser_not_supported-tip" id="art" width="420px" height="280px" src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/browser_not_supported.png"><div id="browsers"><h1>您正在使用的浏览器版本过低，将不能正常访问该页面!</h1><p>您可以使用以下浏览器的最新版本访问该页面！</p><div class="browsers-list"><div class="browser"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/safari.png" alt=""><p>Safari</p></a></div><div class="browser"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/firefox.png" alt=""><p>Mozilla Firefox</p></a></div><div class="browser"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/edgium.png" alt=""><p>Microsoft Edge</p></a></div></div><div class="browsers-list"><div class="browser"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/chrome.png" alt=""><p>Google Chrome</p></a></div><div class="browser last"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/opera.png" alt=""><p>Opera</p></a></div></div></div></div></div>
+<script>(function(){function myBrowser(){if(!!window.ActiveXObject||"ActiveXObject"in window){return true}else{return false}}function getChromeVersion(){var arr=navigator.userAgent.split(' ');var chromeVersion='';for(var i=0;i<arr.length;i++){if(/chrome/i.test(arr[i]))chromeVersion=arr[i]}if(chromeVersion){return Number(chromeVersion.split('/')[1].split('.')[0])}else{return false}}var chromeVersion=getChromeVersion();if(myBrowser()||chromeVersion&&chromeVersion<70){document.getElementById('browsers-page').style.display='block'}})();</script>
 <div id="appProvider" style="display: none"></div>
 <div id="app">
   <style>

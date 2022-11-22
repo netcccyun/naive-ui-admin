@@ -1,6 +1,7 @@
 import type { Plugin,PluginOption } from 'vite';
 import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
@@ -37,6 +38,8 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, prodMock) 
       configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE)
     );
   }
+
+  vitePlugins.push(visualizer({ filename: 'report.html' }))
 
   return vitePlugins;
 }
