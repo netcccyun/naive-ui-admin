@@ -38,10 +38,7 @@
     }
 
     .title {
-      margin-bottom: 0;
-      font-size: inherit;
       margin: 0;
-      font-weight: inherit;
     }
   }
 </style>
