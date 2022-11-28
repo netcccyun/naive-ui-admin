@@ -104,6 +104,7 @@
 
 #browsers-page .browser img {
     width: 72px;
+    margin: 0 auto;
 }
 
 @media (max-width: 1127px) {
@@ -170,8 +171,10 @@
         height: 200px;
     }
 }</style>
-<div id="browsers-page"><div id="main-content" class="gt-four-browsers"><img class="browser_not_supported-tip" id="art" width="420px" height="280px" src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/browser_not_supported.png"><div id="browsers"><h1>您正在使用的浏览器版本过低，将不能正常访问该页面!</h1><p>您可以使用以下浏览器的最新版本访问该页面！</p><div class="browsers-list"><div class="browser"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/safari.png" alt=""><p>Safari</p></a></div><div class="browser"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/firefox.png" alt=""><p>Mozilla Firefox</p></a></div><div class="browser"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/edgium.png" alt=""><p>Microsoft Edge</p></a></div></div><div class="browsers-list"><div class="browser"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/chrome.png" alt=""><p>Google Chrome</p></a></div><div class="browser last"><a><img src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/opera.png" alt=""><p>Opera</p></a></div></div></div></div></div>
-<script>(function(){function myBrowser(){if(!!window.ActiveXObject||"ActiveXObject"in window){return true}else{return false}}function getChromeVersion(){var arr=navigator.userAgent.split(' ');var chromeVersion='';for(var i=0;i<arr.length;i++){if(/chrome/i.test(arr[i]))chromeVersion=arr[i]}if(chromeVersion){return Number(chromeVersion.split('/')[1].split('.')[0])}else{return false}}var chromeVersion=getChromeVersion();if(myBrowser()||chromeVersion&&chromeVersion<70){document.getElementById('browsers-page').style.display='block'}})();</script>
+<div id="browsers-page"><div id="main-content" class="gt-four-browsers"><img class="browser_not_supported-tip" id="art" width="420px" height="280px" data-src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/browser_not_supported.png"><div id="browsers"><h1>您正在使用的浏览器版本过低，将不能正常访问该页面!</h1><p>您可以使用以下浏览器的最新版本访问该页面！</p><div class="browsers-list"><div class="browser"><a><img data-src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/safari.png" alt=""><p>Safari</p></a></div><div class="browser"><a><img data-src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/firefox.png" alt=""><p>Mozilla Firefox</p></a></div><div class="browser"><a><img data-src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/edgium.png" alt=""><p>Microsoft Edge</p></a></div></div><div class="browsers-list"><div class="browser"><a><img data-src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/chrome.png" alt=""><p>Google Chrome</p></a></div><div class="browser last"><a><img data-src="https://ndstatic.cdn.bcebos.com/tongxunlu/images/opera.png" alt=""><p>Opera</p></a></div></div></div></div></div>
+<script>
+(function(){function myBrowser(){if(!!window.ActiveXObject||"ActiveXObject"in window){return true}else{return false}}function getChromeVersion(){var arr=navigator.userAgent.split(" ");var chromeVersion="";for(var i=0;i<arr.length;i++){if(/chrome/i.test(arr[i]))chromeVersion=arr[i]}if(chromeVersion){return Number(chromeVersion.split("/")[1].split(".")[0])}else{return false}}var chromeVersion=getChromeVersion();if(myBrowser()||(chromeVersion&&chromeVersion<70)){var imgtags=document.getElementById("browsers-page").getElementsByTagName('img');for(var i=0;i<imgtags.length;i++){imgtags[i].setAttribute('src',imgtags[i].getAttribute('data-src'))}document.getElementById("browsers-page").style.display="block"}})();
+</script>
 <div id="appProvider" style="display: none"></div>
 <div id="app">
   <style>

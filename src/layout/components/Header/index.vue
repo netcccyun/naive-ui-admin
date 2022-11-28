@@ -126,8 +126,6 @@
       </div>
     </div>
   </div>
-  <!--项目配置-->
-  <ProjectSetting ref="drawerSetting" />
 </template>
 
 <script lang="ts">
@@ -138,7 +136,7 @@
   import { TABS_ROUTES } from '@/store/mutation-types';
   import { useUserStore } from '@/store/modules/user';
   import { useLockscreenStore } from '@/store/modules/lockscreen';
-  import ProjectSetting from './ProjectSetting.vue';
+  //import ProjectSetting from './ProjectSetting.vue';
   import { AsideMenu } from '@/layout/components/Menu';
   import { useProjectSetting } from '@/hooks/setting/useProjectSetting';
   import { useProjectSettingStore } from '@/store/modules/projectSetting';
@@ -147,7 +145,7 @@
 
   export default defineComponent({
     name: 'PageHeader',
-    components: { ...components, NDialogProvider, ProjectSetting, AsideMenu },
+    components: { ...components, NDialogProvider, AsideMenu },
     props: {
       collapsed: {
         type: Boolean,

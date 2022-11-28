@@ -75,6 +75,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       target: 'es2015',
       cssTarget: 'chrome80',
       outDir: OUTPUT_DIR,
+      cssCodeSplit: false,
       terserOptions: {
         compress: {
           keep_infinity: true,
@@ -85,11 +86,16 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       reportCompressedSize: false,
       chunkSizeWarningLimit: 2000,
       rollupOptions: {
-          output: {
-              chunkFileNames: 'static/js/[name]-[hash].js',
-              entryFileNames: 'static/js/[name]-[hash].js',
-              assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+        output: {
+          chunkFileNames: 'static/js/[name]-[hash].js',
+          entryFileNames: 'static/js/[name]-[hash].js',
+          assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+          manualChunks(id) {
+            if (id.includes('vicons')) {
+              return 'vicons'
+            }
           }
+        }
       }
     },
   };
