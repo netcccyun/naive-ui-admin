@@ -4,7 +4,7 @@ import { http } from '@/utils/http/axios';
 export function getTableList(params) {
   return http.request({
     url: '/table/list',
-    method: 'get',
+    method: 'post',
     params,
   });
 }

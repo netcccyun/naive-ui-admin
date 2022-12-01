@@ -30,7 +30,7 @@
   const useLockscreen = useLockscreenStore();
   const designStore = useDesignSettingStore();
   const isLock = computed(() => useLockscreen.isLock);
-  const lockTime = computed(() => useLockscreen.lockTime);
+  //const lockTime = computed(() => useLockscreen.lockTime);
 
   /**
    * @type import('naive-ui').GlobalThemeOverrides

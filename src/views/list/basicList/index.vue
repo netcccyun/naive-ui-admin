@@ -227,11 +227,6 @@
     date: null,
   });
 
-  const params = ref({
-    pageSize: 5,
-    name: 'xiaoMa',
-  });
-
   const actionColumn = reactive({
     width: 220,
     title: '操作',
@@ -284,7 +279,7 @@
     },
   });
 
-  const [register, {}] = useForm({
+  const [register, { getFieldsValue }] = useForm({
     gridProps: { cols: '1 s:1 m:2 l:3 xl:4 2xl:4' },
     labelWidth: 80,
     schemas,
@@ -295,7 +290,7 @@
   }
 
   const loadDataTable = async (res) => {
-    return await getTableList({ ...formParams, ...params.value, ...res });
+    return await getTableList({ ...getFieldsValue(), ...res });
   };
 
   function onCheckedRow(rowKeys) {
@@ -340,6 +335,7 @@
 
   function handleReset(values: Recordable) {
     console.log(values);
+    reloadTable();
   }
 </script>
 

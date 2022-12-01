@@ -25,9 +25,9 @@ export default [
   {
     url: '/api/table/list',
     timeout: 1000,
-    method: 'get',
-    response: ({ query }) => {
-      const { page = 1, pageSize = 10 } = query;
+    method: 'post',
+    response: ({ body }) => {
+      const { page = 1, pageSize = 10 } = body;
       const list = tableList(Number(pageSize));
       return resultSuccess({
         rows: list,
